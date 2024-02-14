@@ -1,0 +1,95 @@
+def seleccionar_palabra(var):
+    palabras = ["python", "programacion", "computadora", "desarrollo", "inteligencia"]
+    return (palabras[var])
+def descubrir(palabra,letras_acertadas):
+    resultado=""
+    for letra in palabra:
+        if letra in letras_acertadas:
+            resultado=resultado+letra+" "
+        else:
+            resultado=resultado+"_"
+    return resultado
+def imprimirAhorcado(intentos):
+    if intentos == 1:
+        print("""
+                       ___
+                      |   |
+                     _O/  |
+                      |   |
+                     / \  |
+                    ______|
+        """)
+    elif intentos == 2:
+        print("""
+                       ___
+                      |   |
+                     _O/  |
+                      |   |
+                       \  |
+                    ______|
+        """)
+    elif intentos == 3:
+        print("""
+                       ___
+                      |   |
+                     _O/  |
+                      |   |
+                          |
+                    ______|
+        """)
+    elif intentos == 4:
+        print("""
+                       ___
+                      |   |
+                     _O/  |
+                          |
+                          |
+                    ______|
+        """)
+    elif intentos == 5:
+        print("""
+                       ___
+                      |   |
+                      O/  |
+                          |
+                          |
+                    ______|
+        """)
+    elif intentos == 6:
+        print("""
+                       ___
+                      |   |
+                      O   |
+                          |
+                          |
+                    ______|
+        """)
+
+
+
+def ahorcadosGame():
+    palabra = seleccionar_palabra(3)
+    intentos_restantes = 6
+    letras_acertadas = []
+    print("¡Bienvenido al juego del ahorcado!")
+    while intentos_restantes > 0:
+        letra = input("Ingrese letra: ")
+        if letra in palabra:
+            if letra in letras_acertadas:
+                print("Ya has ingresado esta letra antes.")
+                intentos_restantes = intentos_restantes - 1
+            else:
+                letras_acertadas.append(letra)  
+                print("¡Correcto! La letra está en la palabra.")
+        else:
+            intentos_restantes = intentos_restantes-1
+            print("La letra no está en la palabra.")
+        imprimirAhorcado(intentos_restantes) 
+        print(descubrir(palabra, letras_acertadas))
+        if (set(palabra))==set(letras_acertadas):
+            print("¡Adivinaste!, la palabra era:", palabra)
+            break
+        if intentos_restantes == 0:
+            print("Perdiste,la palabra era:",palabra)
+    print("Fin del juego")
+ahorcadosGame()
